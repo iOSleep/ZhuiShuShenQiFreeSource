@@ -8,17 +8,37 @@
 //  Copyright (c) 2017年 yolande. All rights reserved.
 //
 
+
 #import "ZhuiShuShenQiFreeSource.h"
 #import "CaptainHook.h"
 #import <UIKit/UIKit.h>
 
 CHDeclareClass(CustomViewController)
 
-CHOptimizedMethod(0, self, NSString*, CustomViewController,getMyName){
-    return @"MonkeyDevPod";
+//decryptKey
+
+CHDeclareClass(SqliteUtils)
+CHOptimizedMethod1(self, BOOL, SqliteUtils, bookAllowPirateResource, id, arg1){
+    return YES;
+}
+CHOptimizedMethod1(self, BOOL, SqliteUtils, bookAllowPirateReading, id, arg1) {
+    return NO;
+}
+
+CHDeclareClass(BookChapterItem)
+CHOptimizedMethod0(self, NSString*, BookChapterItem, decryptKey) {
+    // fuck... key是购买才能后拿到的256 AES
+    NSString *key = CHSuper0(BookChapterItem, decryptKey);
+    NSLog(@"%@: key", key);
+    return key;
 }
 
 CHConstructor{
-    CHLoadLateClass(CustomViewController);
-    CHClassHook(0, CustomViewController, getMyName);
+    CHLoadLateClass(BookChapterItem);
+    CHClassHook(0, BookChapterItem, decryptKey);
+    
+    CHLoadLateClass(SqliteUtils);
+    CHClassHook1(SqliteUtils, bookAllowPirateResource);
+    CHClassHook1(SqliteUtils, bookAllowPirateReading);
 }
+
