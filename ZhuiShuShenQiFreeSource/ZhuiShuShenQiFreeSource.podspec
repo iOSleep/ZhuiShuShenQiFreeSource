@@ -1,9 +1,9 @@
 Pod::Spec.new do |spec|
   spec.name             = "ZhuiShuShenQiFreeSource"                         #Pod的名字
-  spec.version          = "1.0.0"                                     #版本号
+  spec.version          = "1.0.1"                                     #版本号
   spec.summary          = "A example pod for MonkeyDev"
   spec.description      = <<-DESC                                     #Pod的描述
-                          - 查看追书神器任意小说的免费源
+                          - 查看追书神器任意小说的免费源,减少广告！
                         DESC
   spec.homepage         = "https://github.com/iOSleep/ZhuiShuShenQiFreeSource"   #Pod的地址
 
