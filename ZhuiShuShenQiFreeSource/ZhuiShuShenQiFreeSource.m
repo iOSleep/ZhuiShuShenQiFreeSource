@@ -13,9 +13,6 @@
 #import "CaptainHook.h"
 #import <UIKit/UIKit.h>
 
-CHDeclareClass(CustomViewController)
-
-//decryptKey
 
 CHDeclareClass(SqliteUtils)
 CHOptimizedMethod1(self, BOOL, SqliteUtils, bookAllowPirateResource, id, arg1){
@@ -25,20 +22,25 @@ CHOptimizedMethod1(self, BOOL, SqliteUtils, bookAllowPirateReading, id, arg1) {
     return NO;
 }
 
-CHDeclareClass(BookChapterItem)
-CHOptimizedMethod0(self, NSString*, BookChapterItem, decryptKey) {
-    // fuck... key是购买才能后拿到的256 AES
-    NSString *key = CHSuper0(BookChapterItem, decryptKey);
-    NSLog(@"%@: key", key);
-    return key;
+
+@interface ReadViewLabel : UILabel
+@end
+
+CHDeclareClass(ReadViewLabel)
+CHOptimizedMethod1(self, void, ReadViewLabel, drawTextInRect, struct CGRect, arg1) {
+    CHSuper1(ReadViewLabel, drawTextInRect, arg1);
+    NSArray<UIView *> *arr = self.subviews;
+    for(int i = 0; i < arr.count; i++) {
+        [arr[i] removeFromSuperview];
+    }
 }
 
 CHConstructor{
-    CHLoadLateClass(BookChapterItem);
-    CHClassHook(0, BookChapterItem, decryptKey);
-    
     CHLoadLateClass(SqliteUtils);
     CHClassHook1(SqliteUtils, bookAllowPirateResource);
     CHClassHook1(SqliteUtils, bookAllowPirateReading);
+    
+    CHLoadLateClass(ReadViewLabel);
+    CHHook1(ReadViewLabel, drawTextInRect);
 }
 
