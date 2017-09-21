@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
   spec.name             = "ZhuiShuShenQiFreeSource"                         #Pod的名字
-  spec.version          = "1.0.1"                                     #版本号
+  spec.version          = "1.0.2"                                     #版本号
   spec.summary          = "A example pod for MonkeyDev"
   spec.description      = <<-DESC                                     #Pod的描述
                           - 查看追书神器任意小说的免费源,减少广告！
@@ -14,5 +14,6 @@ Pod::Spec.new do |spec|
   spec.source           = { :git => "https://github.com/iOSleep/ZhuiShuShenQiFreeSource.git", :tag => spec.version.to_s }  #代码的git地址以及tag
   spec.source_files     = "**/*.{h,m}"        #本地验证，表示当前目录以及子目录的所有h或m结尾的文件   如果发布到MonkeyPodSpecs需要填写git clone下来的对应的路径
   spec.requires_arc     = true                                       #ARC
+  spec.dependency 'CaptainHook'                                      #由于多个pod导致CaptainHook.h找不到，单独依赖CaptainHook
   spec.pod_target_xcconfig = { "ONLY_ACTIVE_ARCH" => "No" }          #这个必须有，不要修改
 end
