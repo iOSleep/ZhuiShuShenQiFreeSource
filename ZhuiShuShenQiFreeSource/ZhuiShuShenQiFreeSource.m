@@ -10,7 +10,7 @@
 
 
 #import "ZhuiShuShenQiFreeSource.h"
-#import "CaptainHook.h"
+#import <CaptainHook/CaptainHook.h>
 #import <UIKit/UIKit.h>
 
 
