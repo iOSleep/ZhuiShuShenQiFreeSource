@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
   spec.name             = "ZhuiShuShenQiFreeSource"                         #Pod的名字
-  spec.version          = "1.2.0"                                     #版本号
+  spec.version          = "1.2.1"                                     #版本号
   spec.summary          = "A example pod for MonkeyDev"
   spec.description      = <<-DESC                                     #Pod的描述
                           - 查看追书神器任意小说的免费源,减少广告！
